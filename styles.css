@@ -1,0 +1,203 @@
+/* Minimal, typography-first. Light default; dark via prefers-color-scheme. */
+:root {
+  color-scheme: light dark;
+  --bg: #f6f5f1;
+  --fg: #1c1b18;
+  --muted: #534f49;
+  --rule: #d9d6ce;
+  --link: #0b4fbf;
+  --link-hover: #083a8c;
+  --measure: 42rem;
+  --pad: clamp(1.25rem, 4vw, 2rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141311;
+    --fg: #eeece6;
+    --muted: #b0ada4;
+    --rule: #33312c;
+    --link: #8bb4ff;
+    --link-hover: #c5d8ff;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, Roboto,
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  overflow-wrap: break-word;
+}
+
+a {
+  color: var(--link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+}
+
+.wrap {
+  max-width: calc(var(--measure) + 2 * var(--pad));
+  margin: 0 auto;
+  padding: 2.5rem var(--pad) 4.5rem;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+}
+
+.skip:focus {
+  position: static;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+header {
+  margin-bottom: 3rem;
+}
+
+h1 {
+  margin: 0 0 1.1rem;
+  font-size: 1.35rem;
+  line-height: 1.35;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+}
+
+header .intro {
+  margin: 0 0 0.95rem;
+  font-size: 1.125rem;
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+.links {
+  margin: 1.2rem 0 0;
+  font-size: 0.9375rem;
+}
+
+.links .sep {
+  color: var(--muted);
+  margin: 0 0.45em;
+  pointer-events: none;
+}
+
+h2 {
+  margin: 2.75rem 0 1rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--rule);
+  font-size: 1.2rem;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+}
+
+.project {
+  margin: 0 0 1.65rem;
+}
+
+.project h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.0625rem;
+  font-weight: 650;
+}
+
+.pitch,
+.metric,
+.stack,
+.job p,
+.edu p {
+  margin: 0 0 0.3rem;
+}
+
+.metric {
+  color: var(--fg);
+}
+
+.stack,
+.when {
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.also {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.also li {
+  margin: 0 0 0.45rem;
+  padding-left: 0;
+}
+
+.job,
+.edu {
+  margin: 0 0 1.25rem;
+}
+
+.job h3,
+.edu h3 {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 650;
+}
+
+.contact p {
+  margin: 0 0 0.4rem;
+}
+
+
+footer {
+  margin-top: 3rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 1rem;
+  }
+
+  header {
+    margin-bottom: 2.25rem;
+  }
+
+  h1 {
+    font-size: 1.25rem;
+  }
+
+  header .intro {
+    font-size: 1.0625rem;
+  }
+
+  .wrap {
+    padding-top: 1.75rem;
+    padding-bottom: 3.5rem;
+  }
+}

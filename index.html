@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Neelanjan Mitra — agents, harnesses, post-training, and inference.">
+  <title>Neelanjan Mitra</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <a class="skip" href="#work">Skip to things I’ve built</a>
+
+    <header>
+      <h1>Hi, I’m Neelanjan.</h1>
+      <p class="intro">Professionally, I build agents and make them reliable, accessible, and cheap enough for anyone to use. Unprofessionally, I break things to see how they work, and occasionally put them back together better.</p>
+      <p class="intro">Most recently, I was the lead engineer at ACTi, where I built OLYMPUS, an agentic legal platform, from the ground up, and worked on post-training and the harnesses that make models do real work.</p>
+      <p class="intro">Before that I was at GAIFE and Hotpot.ai. On the side, I squeeze big models onto small machines and write the occasional CUDA kernel.</p>
+      <p class="links">
+        <a href="https://github.com/NeelM0906">GitHub</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <a href="https://huggingface.co/LordNeel">Hugging Face</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <a href="https://www.linkedin.com/in/neelanjanmitra0906">LinkedIn</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <a href="mailto:neelanjanmitra2021@gmail.com">Email</a>
+      </p>
+    </header>
+
+    <main>
+      <section id="work" aria-labelledby="work-h">
+        <h2 id="work-h">Here are some things I’ve built:</h2>
+
+        <article class="project">
+          <h3><a href="https://github.com/NeelM0906/Mference">Mference</a></h3>
+          <p class="pitch">A Swift and Metal engine that runs mixture-of-experts models larger than a Mac’s RAM, by keeping shared weights in memory and streaming the experts each token needs from SSD.</p>
+          <p class="metric">Qwen 3.6 (35B) decodes at 23.5–29.3 tok/s in about 1.45 GB, measured on a 24 GB M5.</p>
+          <p class="stack">Swift, Metal, custom .gturbo format, OpenAI-compatible server, Open WebUI. Source release for Apple Silicon; site at neelm0906.github.io/Mference.</p>
+        </article>
+
+        <article class="project">
+          <h3><a href="https://github.com/NeelM0906/Mauz">Mauz</a></h3>
+          <p class="pitch">A desktop assistant for macOS and Windows: shake the mouse or press a shortcut, and it answers about whatever you’re pointing at, or hands the task to a coding agent.</p>
+          <p class="metric">Works with a Claude or ChatGPT subscription or an API key — no separate Mauz account — and can send work to Hermes, Claude Code, or Codex.</p>
+          <p class="stack">TypeScript, desktop app (macOS and Windows).</p>
+        </article>
+
+        <article class="project">
+          <h3><a href="https://huggingface.co/LordNeel/DeepSeek-V4-Flash-Acti-MTP-W4A16-FP8">DeepSeek-V4 MTP restore</a></h3>
+          <p class="pitch">Put the Multi-Token Prediction head back into a popular W4A16-FP8 DeepSeek-V4-Flash quant — community checkpoints had dropped it — so vLLM speculative decoding actually speeds up decode.</p>
+          <p class="metric">On 2× RTX PRO 6000 Blackwell Max-Q: 52.85 → 85.52 tok/s at 524k context (+62%), and about 111 tok/s at 128k (+110%).</p>
+          <p class="stack">vLLM, GPTQ W4A16, FP8_BLOCK attention, Docker serve path. Work done at ACTi; Apache-2.0.</p>
+        </article>
+
+        <article class="project">
+          <h3><a href="https://huggingface.co/LordNeel/Agents-A1-GGUF">Community GGUF quants</a></h3>
+          <p class="pitch">Public llama.cpp quants of large MoE and multimodal models, with published quality and speculative-decoding numbers — including Agents-A1, Ornith 35B, Tencent Hy3, and NVIDIA Audex.</p>
+          <p class="metric">Agents-A1 IQ4_XS with a grafted MTP head measured 1.22× throughput versus the same quant without speculation, on a single RTX PRO 6000 Blackwell Max-Q.</p>
+          <p class="stack">llama.cpp GGUF, imatrix calibration, NVFP4, MTP sidecars. On Hugging Face as LordNeel.</p>
+        </article>
+
+        <article class="project">
+          <h3><a href="https://github.com/NeelM0906/okc-kernels">OKC kernels</a></h3>
+          <p class="pitch">CUDA kernels for Muse Spark’s Open Kernel Challenge — a Muse-style decode stack covering attention, MoE, and projections — built from credited open-source bases and further original tuning.</p>
+          <p class="metric">Official decode-layer score 2.28× versus the reference.</p>
+          <p class="stack">CUDA, Python judge harness. Challenge closed 4 Nov 2026.</p>
+        </article>
+
+        <article class="project">
+          <h3><a href="https://github.com/NeelM0906/WindowsFinder">WindowsFinder</a></h3>
+          <p class="pitch">A Windows app and CLI that searches files by what’s in them, not just by name: keyword plus semantic hybrid search, with OCR and multilingual support.</p>
+          <p class="metric">On a 140-query eval (125 with an answer), hybrid search reached nDCG@10 0.888 and recall@10 0.960; median latency in that run was 175 ms.</p>
+          <p class="stack">Rust, Tauri, Svelte, tantivy BM25, EmbeddingGemma 2 via llama.cpp Vulkan.</p>
+        </article>
+
+        <article class="project">
+          <h3><a href="https://github.com/NeelM0906/paper2video">paper2video</a></h3>
+          <p class="pitch">Turns an arXiv paper into a narrated, 3Blue1Brown-style explainer video using your own Claude Code or Codex subscription, then serves a local gallery. No GPU required.</p>
+          <p class="metric">A 5-tool allowlist cuts the fixed context of each headless agent call from about 41k tokens to about 5k.</p>
+          <p class="stack">Python, uv, Manim, Kokoro TTS, FastAPI, Claude Code / Codex.</p>
+        </article>
+
+        <article class="project">
+          <h3><a href="https://github.com/NeelM0906/Memory-Efficient-Logits">Memory-Efficient Logits</a></h3>
+          <p class="pitch">I wrote a custom PyTorch autograd function that computes logits and cross-entropy in token chunks, and recomputes those chunk logits on the backward pass, so the full vocabulary-sized logit matrix never sits in memory at once.</p>
+          <p class="metric">Cuts peak memory 2.5–3.7× versus the standard path, at about 15% slower speed, in a forward-and-backward test with batch 4, sequence length 2,048, and vocabularies up to 200k.</p>
+          <p class="stack">Python, PyTorch, fp16.</p>
+        </article>
+      </section>
+
+      <section id="also" aria-labelledby="also-h">
+        <h2 id="also-h">Also built</h2>
+        <ul class="also">
+          <li><a href="https://github.com/NeelM0906/Vape-Coach">Vape-Coach</a> — a Hermes plugin that spots vape hits on a webcam and tapers the habit.</li>
+          <li><a href="https://github.com/NeelM0906/auth-for-agents">Auth for Agents</a> — a DPoP-bound identity and policy layer so sites can admit AI agents without handing them cookies.</li>
+          <li><a href="https://github.com/NeelM0906/Factory">AutoStack</a> — a local-first desktop control plane for taking work from a signal to a reviewed delivery; developer alpha.</li>
+          <li><a href="https://github.com/NeelM0906/Agent-Yield">Agent-Yield</a> — a local evidence ledger for inspecting human and agent effort; estimates are uncalibrated on purpose.</li>
+          <li><a href="https://github.com/NeelM0906/Chalo">Chalo</a> — a travel itinerary app with a custom recommendation engine.</li>
+          <li><a href="https://github.com/NeelM0906/voiceAgents">voiceAgents</a> — a multi-tenant voice and SMS receptionist (Twilio, LiveKit, hybrid RAG).</li>
+          <li><a href="https://github.com/NeelM0906/AccTaX">AccTaX</a> — an India-first AI accounting and GST workspace (early).</li>
+        </ul>
+      </section>
+
+      <section id="experience" aria-labelledby="exp-h">
+        <h2 id="exp-h">Experience</h2>
+
+        <article class="job">
+          <h3>Lead Engineer, ACTi</h3>
+          <p class="when">Oct 2025 – Nov 2026 · New York</p>
+          <p>I built OLYMPUS, an agentic legal software platform, from the ground up. I raised the same model’s score from 20% to 24% on Harvey LAB while cutting cost by 42%, using my own harness, and did a lot of post-training work.</p>
+        </article>
+
+        <article class="job">
+          <h3>Software Engineer, GAIFE</h3>
+          <p class="when">Sep 2024 – Sep 2025</p>
+        </article>
+
+        <article class="job">
+          <h3>Software Engineer, Hotpot.ai</h3>
+          <p class="when">Jul 2022 – Aug 2023</p>
+          <p>Built evaluation data for LLM hallucinations (10k real excerpts, 100k synthetic contexts, 1M Q/A pairs), a Node.js/Express API, and a React dashboard for internal data exploration. Added Jest and Pytest tests, increasing coverage by 30% across services.</p>
+        </article>
+
+        <article class="job">
+          <h3>Data Analyst, Open Insights</h3>
+          <p class="when">Jul 2021 – Dec 2021</p>
+          <p>Behavioral churn analysis in Python and SQL, finding 0.7% more at-risk users, plus hypothesis testing and PCA for customer segmentation.</p>
+        </article>
+      </section>
+
+      <section id="education" aria-labelledby="edu-h">
+        <h2 id="edu-h">Education</h2>
+        <article class="edu">
+          <h3>MPS Analytics, Northeastern University</h3>
+          <p class="when">2022 – 2024</p>
+        </article>
+        <article class="edu">
+          <h3>BE, Electronics and Telecommunication Engineering, Army Institute of Technology, Pune</h3>
+          <p class="when">2018 – 2022</p>
+        </article>
+      </section>
+
+      <section id="contact" aria-labelledby="contact-h">
+        <h2 id="contact-h">Contact</h2>
+        <p>
+          <a href="https://github.com/NeelM0906">GitHub</a>
+          ·
+          <a href="https://huggingface.co/LordNeel">Hugging Face</a>
+          ·
+          <a href="https://www.linkedin.com/in/neelanjanmitra0906">LinkedIn</a>
+        </p>
+        <p>Email: <a href="mailto:neelanjanmitra2021@gmail.com">neelanjanmitra2021@gmail.com</a></p>
+      </section>
+    </main>
+
+    <footer>
+      <p>New York.</p>
+    </footer>
+  </div>
+</body>
+</html>
